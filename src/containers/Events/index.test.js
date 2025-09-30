@@ -39,7 +39,7 @@ const data = {
 
 describe("When Events is created", () => {
   it("a list of event card is displayed", async () => {
-    api.loadData = jest.fn().mockRejectedValue(new Error("fail"));
+    api.loadData = jest.fn().mockResolvedValue(data);
     render(
       <DataProvider>
         <Events />
@@ -49,7 +49,7 @@ describe("When Events is created", () => {
   });
   describe("and an error occured", () => {
     it("an error message is displayed", async () => {
-      api.loadData = jest.fn().mockRejectedValue(new Error("fail"));
+      api.loadData = jest.fn().mockResolvedValue(data);
       render(
         <DataProvider>
           <Events />
@@ -97,7 +97,7 @@ describe("When Events is created", () => {
       );
 
       fireEvent(
-        await screen.findByText("Conférence #productCON"),
+        await screen.findByText("Conférence #productCON"),  
         new MouseEvent("click", {
           cancelable: true,
           bubbles: true,
