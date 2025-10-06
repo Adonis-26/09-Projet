@@ -97,6 +97,7 @@ const Page = () => {
       </section>
       
       <div className="FormContainer" id="contact">
+        
         <h2 className="Title">Contact</h2>
         <Modal
           Content={
