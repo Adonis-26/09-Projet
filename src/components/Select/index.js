@@ -25,15 +25,15 @@ const Select = ({
       {label && <div className="label">{label}</div>}
       <div className="Select">
         <ul>
-          <li className={collapsed ? "SelectTitle--show" : "SelectTitle--hide"}>
-            {value || (!titleEmpty && "Toutes")}
+          <li className={collapsed ? "SelectTitle--show": "SelectTitle--hide"}>
+            {value || (!titleEmpty && "Sélectionner")}
           </li>
           {!collapsed && (
             <>
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
-                  Toutes
+                  Sélectionner
                 </li>
               )}
               {selection.map((s) => (
@@ -68,6 +68,7 @@ const Select = ({
 
 const Arrow = () => (
   <svg
+    cursor="pointer"
     width="21"
     height="11"
     viewBox="0 0 21 11"

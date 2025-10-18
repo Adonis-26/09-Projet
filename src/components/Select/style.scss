@@ -34,6 +34,7 @@
     width: 300px;
     padding: 0;
     padding-left: 16px;
+    cursor: pointer; // ajouter
     li {
       display: flex;
       align-items: center;
@@ -44,6 +45,7 @@
     }
   }
   input {
+    cursor: pointer; // ajouter
     width: 16px;
     height: 16px;
     min-width: 16px;

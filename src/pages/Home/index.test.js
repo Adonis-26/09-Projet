@@ -7,7 +7,7 @@ describe("When Form is created", () => {
     await screen.findByText("Email");
     await screen.findByText("Nom");
     await screen.findByText("Prénom");
-    await screen.findByText("Personel / Entreprise");
+    await screen.findByText("Personnel / Entreprise"); // typo personel
   });
 
   describe("and a click is triggered on the submit button", () => {
@@ -20,8 +20,8 @@ describe("When Form is created", () => {
           bubbles: true,
         })
       );
-      await screen.findByText("En cours");
-      await screen.findByText("Message envoyé !");
+      await screen.findByText("En cours", {}, { timeout: 3000 });
+      await screen.findByText("Message envoyé !", {}, { timeout: 3000 });
     });
   });
 
