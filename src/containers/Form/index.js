@@ -4,17 +4,32 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
-const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); })
+const mockContactApi = () =>
+  new Promise((resolve) => {
+    setTimeout(resolve, 500);
+  });
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  
+  const [selected, setSelected] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleChange = (value) => {
+    setSelected(value);
+    setError(false);
+  };
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
+
+      // 🔍 Vérification stricte : doit être "Personnel" ou "Entreprise"
+      if (selected !== "Personnel" && selected !== "Entreprise") {
+        setError(true);
+        return;
+      }
+
       setSending(true);
-      
-      // We try to call mockContactApi
       try {
         await mockContactApi();
         setSending(false);
@@ -24,24 +39,34 @@ const Form = ({ onSuccess, onError }) => {
         onError(err);
       }
     },
-    [onSuccess, onError]
+    [selected, onSuccess, onError]
   );
+
   return (
     <form onSubmit={sendContact}>
       <div className="row">
         <div className="col">
           <Field placeholder="Entrez votre Nom" label="Nom" />
           <Field placeholder="Entrez votre Prénom" label="Prénom" />
+
           <Select
             selection={["Personnel", "Entreprise"]}
-            onChange={() => null}
+            value={selected}
+            onChange={handleChange}
             label="Personnel / Entreprise"
             type="large"
           />
-          <Field 
-          placeholder="Entrez votre Email" 
-          label="Email" 
-          type="Email"
+
+          {error && (
+            <p style={{ color: "red", marginTop: "4px" }}>
+              ⚠️ Veuillez sélectionner `Personnel` ou `Entreprise`.
+            </p>
+          )}
+
+          <Field
+            placeholder="Entrez votre Email"
+            label="Email"
+            type="Email"
           />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
