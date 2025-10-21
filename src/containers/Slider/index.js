@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useData } from "../../contexts/DataContext";
 import { getMonth } from "../../helpers/Date";
 
@@ -7,9 +7,9 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = [...(data?.focus ?? [])].sort((a, b) =>
-    new Date(a.date) < new Date(b.date) ? -1 : 1
-  );
+ const byDateDesc = [...(data?.focus ?? [])].sort(
+  (a, b) => new Date(b.date) - new Date(a.date)
+);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,6 +27,7 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
+        <Fragment key={event.id}> 
         <>
           <div
             key={event.title}
@@ -56,6 +57,7 @@ const Slider = () => {
             </div>
           </div>
         </>
+        </Fragment>
       ))}
     </div>
   );
