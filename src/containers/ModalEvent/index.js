@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-
 import "./style.scss";
 
 const ModalEvent = ({ event }) => (
