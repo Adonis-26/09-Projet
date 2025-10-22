@@ -66,7 +66,7 @@ const Form = ({ onSuccess, onError }) => {
           <Field
             placeholder="Entrez votre Email"
             label="Email"
-            type="Email"
+            type={FIELD_TYPES.EMAIL}
           />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
