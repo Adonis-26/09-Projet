@@ -8,7 +8,7 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
  const byDateDesc = [...(data?.focus ?? [])].sort(
-  (a, b) => new Date(b.date) - new Date(a.date)
+  (a, b) => new Date(a.date) - new Date(b.date)
 );
 
   useEffect(() => {
