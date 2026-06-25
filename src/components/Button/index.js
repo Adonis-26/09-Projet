@@ -50,7 +50,6 @@ const Button = ({ title, onClick, type, disabled, children }) => {
   }
 };
 
-// eslint-disable-next-line react/no-typos
 Button.propTypes = {
   title: PropTypes.string,
   onClick: PropTypes.func,
